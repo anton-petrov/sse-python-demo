@@ -1,6 +1,7 @@
 ## Realtime data streaming with FastAPI and Server-Sent Events
 
-![Demo](/imgs/app_demo.gif?raw=true "Optional Title")
+![Server](/img/term.gif?raw=true "Terminal")
+![Browser](/img/web.gif?raw=true "Browser")
 
 
 ### Setup
