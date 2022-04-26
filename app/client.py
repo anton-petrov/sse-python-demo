@@ -19,7 +19,7 @@ client = sseclient.SSEClient(response)
 
 for event in client.events():
     try:
-        print(json.loads(event.data))
+        print(event.data)
     except:
         pass
-        # print(type(event.data), event.data)
+        print(type(event.data), event.data)

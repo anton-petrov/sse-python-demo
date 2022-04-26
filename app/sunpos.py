@@ -13,7 +13,7 @@ def sunpos_now_krasnodar():
         "elevation": elevation,
         "latitude": location[0],
         "longitude": location[1],
-        "time": str(now)
+        "time": now.isoformat()
     }
 
 def sunpos(when, location, refraction):

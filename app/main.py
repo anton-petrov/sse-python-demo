@@ -14,7 +14,8 @@ import logging
 import queue
 from app.sunpos import *
 
-STREAM_DELAY = 0.5
+STREAM_DELAY = 1
+RETRY_TIMEOUT = 1500
 
 logger = logging.getLogger(__name__)
 
@@ -35,17 +36,20 @@ dir_path = os.path.dirname(real_path)
 app.mount("/client", StaticFiles(directory=f"{dir_path}/../client"), name="client")
 
 async def data_generator(request):
+    id: int = 0
     while True:
         if await request.is_disconnected():
             logger.info("client disconnected")
             break
         if not queue.empty():
+            id += 1
             next = queue.get()
-            yield json.dumps(next)
+            # https://datatracker.ietf.org/doc/html/rfc8895
+            yield f"event: sun_position\nid: {id}\nretry: {RETRY_TIMEOUT}\ndata: {json.dumps(next)}\n\n"
 
 
 @app.get('/stream-data')
-async def run_status(request: Request):
+async def stream_data(request: Request):
     event_generator = data_generator(request)
     return EventSourceResponse(event_generator)
 
