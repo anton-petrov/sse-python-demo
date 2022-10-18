@@ -4,16 +4,20 @@
 ![Browser](/img/web.gif?raw=true "Browser")
 
 
-### Setup
-# Demo SSE streaming data in python
-## Prerequisites
-Python 3.9+, Poetry package manager.
+## Setup
+### Prerequisites
+* Python 3.9+
+* [poetry](https://python-poetry.org) package manager
 
-1. poetry shell
-2. poetry install
-3. chmod +x ./start.sh
+```shell
+$ git clone git@github.com:anton-petrov/sse-python-demo.git
+$ cd sse-python-demo
+$ poetry shell
+$ poetry install
+$ chmod +x ./start.sh
+```
 
-#### Demo
+### Demo
 - Run server: `./start.sh`
 - Run client in browser `http://localhost:8000`
 - Run client in terminal `python app/client.py` or `poetry run app/client.py`
